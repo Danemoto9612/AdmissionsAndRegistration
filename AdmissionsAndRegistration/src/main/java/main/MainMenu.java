@@ -1,16 +1,22 @@
+// Menú principal de acciones sobre el programa
 package main;
 
+// Clase Scanner nativa de java
 import java.util.Scanner;
+// Clase Operations encargada de las acciones del programa
 import operation.Operations;
 
 public class MainMenu {
 
+    // Scanner para leer entrada del usuario
     static Scanner sc = new Scanner(System.in);
 
+    // Variable para almacenar la entrada del usuario
     static String option;
 
     public static void admissionsAndRegistrationMenu() {
 
+        // Ciclo para controlar el menú de acciones
         do {
 
             System.out.println("----------------------------------------------------------------------------");
@@ -24,49 +30,60 @@ public class MainMenu {
             System.out.print("Ingrese opcion: ");
             option = sc.nextLine();
 
+            // Selección de acciones 
             switch (option) {
 
                 case "1" -> {
                     
-                    Operations.createRecord();
+                    // Método para crear nuevos registros de usuarios
+                    Operations.createRecord(); // Pertenece al package operation y a la clase Operations
                 }
                 case "2" -> {
                     
-                    Operations.showRecords();
+                    // Método para mostrar los registros creados (la fila de personas)
+                    Operations.showRecords(); // Pertenece al package operation y a la clase Operations
                 }
                 case "3" -> {
                     
-                    Operations.serveNextPerson();
+                    // Método para desencolar (Atender a la siguiente persona)
+                    Operations.serveNextPerson(); // Pertenece al package operation y a la clase Operations
                 }
                 case "4" -> {
                     
-                    Operations.calculateAverageTime();
+                    // Método para calcular el promedio de tiempo en atender a una persona
+                    Operations.calculateAverageTime(); // Pertenece al package operation y a la clase Operations
                 }
                 case "5" -> {
                     
-                    Operations.changeQueue();
+                    // Método para mover a otra fila en caso de error
+                    Operations.changeQueue(); // Pertenece al package operation y a la clase Operations
                 }
                 case "6" -> {
                     
-                    Operations.attentionInterval();
+                    // Método para calular la cantidad de atenciones en un intervalo de tiempo
+                    Operations.attentionInterval(); // Pertenece al package operation y a la clase Operations
                 }
                 case "7" -> {
                     
+                    // Salir y mostrar mensaje de despedida
                     System.out.println("----------------------------------------------------------------------------");
                     System.out.println("                      H A S T A   L A   P R O X I M A");
                     System.out.println("----------------------------------------------------------------------------");
                 }
                 case "8" -> {
                     
+                    // Huevo de pascua muestra el creador del programa
                     System.out.println("----------------------------------------------------------------------------");
                     System.out.println("                        CREADO POR DANIEL MORALES");
                 }
                 default -> {
                     
+                    // Muestra al usuario que ha elegido una opción inválida
                     System.out.println("----------------------------------------------------------------------------");
                     System.out.println("                       O P C I O N   I N V A L I D A");
                 }
             }
+        // Condición lógica del ciclo
         } while (!option.equals("7"));
     }
 }

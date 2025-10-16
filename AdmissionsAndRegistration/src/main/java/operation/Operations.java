@@ -1,22 +1,112 @@
 package operation;
 
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import person.Persons;
 
 public class Operations {
-    
-    private static Persons[] records = new Persons[100];
+
+    static Scanner sc = new Scanner(System.in);
+
+    // Instanciación del vector de registros
+    private static final Persons[] records = new Persons[100];
+    // Controlador de la posición del nuevo registro y el tamaño lógico del vector
     private static int lenRecords = 0;
+    // Variables para la función de retorno del número fibonacci
+    private static int a = 0, b = 1, next;
+
+    public static void createRecord() {
+
+        if (lenRecords < 50) {
+
+            // Crear nuevo objeto de la clase Persons para almacenar en el registro.
+            records[lenRecords] = new Persons();
+
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println("                  C R E A R   N U E V O   U S U A R I O");
+
+            // Ciclo para pedir el nombre y verificar que si se ingrese uno
+            while (true) {
+
+                String data;
+                System.out.println("----------------------------------------------------------------------------");
+                System.out.print("Ingrese nombre: ");
+                data = sc.nextLine();
+                // Condición lógica para verificar que se haya ingresado un nombre
+                if (data.length() > 0) {
+
+                    records[lenRecords].name = data;
+
+                    // Salida del ciclo
+                    break;
+                }
+            }
+
+            // Fecha de ingreso tomada por el sistema
+            records[lenRecords].enterDate = LocalDate.now();
+            // Hora de ingreso tomada por el sistema
+            records[lenRecords].enterTime = LocalTime.now();
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println("Fecha de ingreso: " + records[lenRecords].enterDate);
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println("Hora de ingreso: " + records[lenRecords].enterTime);
+            // Ciclo para verificar si el usuario requiere atención especial
+            while (true) {
+
+                String option;
+                System.out.println("----------------------------------------------------------------------------");
+                System.out.print("Requiere atención especial (1-Si 2-No): ");
+                option = sc.nextLine();
+                
+                if (option.equals("1")) {
+
+                    System.out.println("----------------------------------------------------------------------------");
+                    records[lenRecords].specialService = true;
+                    records[lenRecords].fibonacciNumber = returnFibonacci();
+                    System.out.println("Atencion especial registrada con código: " + records[lenRecords].fibonacciNumber);
+                    break;
+                } else if (option.equals("2")) {
+
+                    records[lenRecords].specialService = false;
+                    break;
+                } else {
+
+                    // Muestra al usuario que ha elegido una opción inválida
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.println("                       O P C I O N   I N V A L I D A");
+                }
+            }
+            
+            lenRecords++;
+        } else {
+
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println("       I M P O S I B L E   A T E N D E R   M A S   U S U A R I O S");
+        }
+    }
+
+    public static void showRecords() {
+    }
+
+    public static void serveNextPerson() {
+    }
+
+    public static void calculateAverageTime() {
+    }
+
+    public static void changeQueue() {
+    }
+
+    public static void attentionInterval() {
+    }
     
-    public static void createRecord() {}
-    
-    public static void showRecords() {}
-    
-    public static void serveNextPerson() {}
-    
-    public static void calculateAverageTime() {}
-    
-    public static void changeQueue() {}
-    
-    public static void attentionInterval() {}
+    public static int returnFibonacci() {
+        
+        next = a + b;
+        a = b;
+        b = next;
+        
+        return next;
+    }
 }

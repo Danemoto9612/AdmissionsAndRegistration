@@ -5,12 +5,12 @@ import java.time.LocalTime;
         
 public class Persons {
     
-    String name;
-    LocalDate enterDate;
-    LocalTime enterTime;
-    LocalDate serviceDate;
-    LocalTime serviceTime;
-    boolean service = false;
-    boolean specialService = false;
-    int fibonacciNumber;
+    public String name;
+    public LocalDate enterDate;
+    public LocalTime enterTime;
+    public LocalDate serviceDate;
+    public LocalTime serviceTime;
+    public boolean service = false;
+    public boolean specialService = false;
+    public int fibonacciNumber;
 }
