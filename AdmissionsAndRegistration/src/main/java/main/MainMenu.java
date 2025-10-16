@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Scanner;
+import operation.Operations;
 
 public class MainMenu {
 
@@ -26,16 +27,28 @@ public class MainMenu {
             switch (option) {
 
                 case "1" -> {
+                    
+                    Operations.createRecord();
                 }
                 case "2" -> {
+                    
+                    Operations.showRecords();
                 }
                 case "3" -> {
+                    
+                    Operations.serveNextPerson();
                 }
                 case "4" -> {
+                    
+                    Operations.calculateAverageTime();
                 }
                 case "5" -> {
+                    
+                    Operations.changeQueue();
                 }
                 case "6" -> {
+                    
+                    Operations.attentionInterval();
                 }
                 case "7" -> {
                     
