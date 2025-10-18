@@ -10,19 +10,19 @@ public class Operations {
 
     static Scanner sc = new Scanner(System.in);
 
-    static final Persons[] records = new Persons[100];
-    static final Persons[] auxRecords = new Persons[100];
-    static String[] eTime = new String[100];
-    static String[] sTime = new String[100];
-    static int lenRecords = 0;
-    static int a = 0, b = 1, next;
-    static LocalDate date;
-    static LocalTime time;
-    static LocalTime begin;
-    static LocalTime end;
-    static int counterPeople = 0;
-    static int counterAtention = 0;
-    static int i = 0;
+    private static final Persons[] records = new Persons[100];
+    private static final Persons[] auxRecords = new Persons[100];
+    private static String[] eTime = new String[100];
+    private static String[] sTime = new String[100];
+    private static int lenRecords = 0;
+    private static int a = 0, b = 1, next;
+    private static LocalDate date;
+    private static LocalTime time;
+    private static LocalTime begin;
+    private static LocalTime end;
+    private static int counterPeople = 0;
+    private static int counterAtention = 0;
+    private static int i = 0;
 
     static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
