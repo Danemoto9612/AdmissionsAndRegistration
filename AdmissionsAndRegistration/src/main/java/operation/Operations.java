@@ -18,12 +18,15 @@ public class Operations {
     static int a = 0, b = 1, next;
     static LocalDate date;
     static LocalTime time;
+    static LocalTime begin;
+    static LocalTime end;
     static int counterPeople = 0;
+    static int counterAtention = 0;
     static int i = 0;
 
     static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-    
+
     // Método para crear un registro nuevo
     public static void createRecord() {
 
@@ -52,7 +55,7 @@ public class Operations {
             }
 
             date = LocalDate.now();
-            records[lenRecords].enterDate = date.format(dateFormat); 
+            records[lenRecords].enterDate = date.format(dateFormat);
             time = LocalTime.now();
             records[lenRecords].enterTime = time.format(timeFormat);
 
@@ -192,23 +195,20 @@ public class Operations {
     public static void calculateAverageTime() {
 
         if (i > 0) {
-            
+
             long totalMinutes = 0;
 
-            // Recorrer todos los registros atendidos
             for (int j = 0; j < i; j++) {
-                
+
                 if (eTime[j] != null && sTime[j] != null) {
-                    
+
                     LocalTime input = LocalTime.parse(eTime[j], timeFormat);
                     LocalTime output = LocalTime.parse(sTime[j], timeFormat);
 
-                    // Calcula la diferencia entre entrada y salida
                     long minutes = java.time.Duration.between(input, output).toMinutes();
 
-                    // Si por alguna razón la hora de salida es menor (por error o cambio de día)
                     if (minutes < 0) {
-                        
+
                         minutes += 24 * 60;
                     }
 
@@ -216,10 +216,8 @@ public class Operations {
                 }
             }
 
-            // Calcula el promedio en minutos
             long average = totalMinutes / i;
 
-            // Convierte el promedio a formato HH:mm
             long hours = average / 60;
             long minutes = average % 60;
 
@@ -233,8 +231,7 @@ public class Operations {
             System.out.println("----------------------------------------------------------------------------");
 
         } else {
-            
-            // No existen registros
+
             System.out.println("----------------------------------------------------------------------------");
             System.out.println("       N O   S E   H A N   A T E N D I D O   U S U A R I O S   A U N");
         }
@@ -302,6 +299,64 @@ public class Operations {
 
     // Método para calcular atenciones en un intervalo dado
     public static void attentionInterval() {
+
+        if (i > 0) {
+
+            while (true) {
+
+                try {
+
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.print("Ingrese hora de inicio (HH:mm): ");
+                    String beginStr = sc.nextLine();
+                    begin = LocalTime.parse(beginStr, timeFormat);
+                    break;
+                } catch (Exception e) {
+
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.println("                   F O R M A T O   I N V A L I D O");
+                }
+            }
+
+            while (true) {
+
+                try {
+
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.print("Ingrese hora de fin (HH:mm): ");
+                    String endStr = sc.nextLine();
+                    end = LocalTime.parse(endStr, timeFormat);
+                    break;
+                } catch (Exception e) {
+
+                    System.out.println("----------------------------------------------------------------------------");
+                    System.out.println("                   F O R M A T O   I N V A L I D O");
+                }
+            }
+
+            counterAtention = 0;
+
+            for (String times : sTime) {
+
+                if (times != null) {
+
+                    LocalTime hour = LocalTime.parse(times, timeFormat);
+
+                    if (!hour.isBefore(begin) && !hour.isAfter(end)) {
+
+                        counterAtention++;
+                    }
+                }
+            }
+
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println(" Intervalo consultado: " + begin + " - " + end);
+            System.out.println(" Atenciones realizadas: " + counterAtention);
+        } else {
+
+            System.out.println("----------------------------------------------------------------------------");
+            System.out.println("       N O   S E   H A N   A T E N D I D O   U S U A R I O S   A U N");
+        }
     }
 
     // Método interno para retornar un número dentro de la serie Fibonacci
